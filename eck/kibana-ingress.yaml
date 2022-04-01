@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kibana-ingress
+  namespace: elastic-system
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/kibana"
+        backend:
+          service:
+            name: kashcluster-kb-http
+            port:
+              number: 5601
