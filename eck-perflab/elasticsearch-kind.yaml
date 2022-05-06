@@ -1,0 +1,30 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: perflab
+  namespace: elastic-system
+spec:
+  version: 8.1.2
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+#  http:
+#    service:
+#      spec:
+#        type: LoadBalancer
+  nodeSets:
+    - name: default
+      count: 3
+      podTemplate:
+        spec:
+          containers:
+            - name: elasticsearch
+              env:
+                - name: ES_JAVA_OPTS
+                  value: -Xms4g -Xmx4g
+              resources:
+                requests:
+                  memory: 4Gi
+                  cpu: 3
+
