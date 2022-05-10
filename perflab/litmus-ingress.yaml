@@ -11,16 +11,16 @@ spec:
     - host: "perflab-litmus.perf.msap.io"
       http:
         paths:
-          - path: "/"
+          - path:  /
             pathType: ImplementationSpecific
             backend:
               service:
-                name: chaos-litmus-frontend-service
+                name: litmusportal-frontend-service
                 port:
                   number: 9091
           - backend:
               service:
-                name: chaos-litmus-server-service
+                name: litmusportal-server-service
                 port:
                   number: 9002
             path: /backend/(.*)
