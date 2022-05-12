@@ -1,29 +1,26 @@
 input {
   file {
-  path => "/Users/prakash.ramesh/Downloads/20220330-1246_1"
-  start_position => "beginning"
-  sincedb_path => "/dev/null"
+    path => "/Users/prakash.ramesh/Downloads/20220330-1246_1"
+    start_position => "beginning"
+    sincedb_path => "/dev/null"
  }
 }
 
 filter {
-csv {
-separator => ","
-skip_header => "true"
-columns => ["timeStamp","elapsed","label","responseCode","responseMessage","threadName","dataType","success","failureMessage","bytes","sentBytes","grpThreads","allThreads","URL","Latency","IdleTime","Connect"]
-}
+  csv {
+    separator => ","
+    skip_header => "true"
+    columns => ["timeStamp","elapsed","label","responseCode","responseMessage","threadName","dataType","success","failureMessage","bytes","sentBytes","grpThreads","allThreads","URL","Latency","IdleTime","Connect"]
+  }
 }
 
 output {
-elasticsearch {
-hosts => "https://localhost:9200"
-user => "elastic"
-password => "2kqH095eI2fFl6v3jz20dxz7"
-ssl_certificate_verification => false
-manage_template => false
-index => "mdas-results"
-}
-
-stdout { codec => json }
-
+  elasticsearch {
+    hosts => "http://perflab-elastic.perf.msap.io:80/"
+    user => "perfteam"
+    password => "9erfteam123"
+    ssl_certificate_verification => false
+    index => "perf-mdas-results-%{+yyyy.MM.dd}-00001"
+  }
+  stdout { codec => json }
 }
