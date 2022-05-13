@@ -14,8 +14,18 @@ spec:
 #      spec:
 #        type: LoadBalancer
   nodeSets:
-    - name: default
+    - name: lrgnodes
       count: 3
+      volumeClaimTemplates:
+      - metadata:
+          name: elasticsearch-data # Do not change this name unless you set up a volume mount for the data path.
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 100Gi
+          storageClassName: gp2
       podTemplate:
         spec:
           containers:
@@ -27,4 +37,3 @@ spec:
                 requests:
                   memory: 4Gi
                   cpu: 3
-
