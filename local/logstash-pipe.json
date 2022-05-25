@@ -17,8 +17,8 @@ columns => ["timeStamp","elapsed","label","responseCode","responseMessage","thre
 output {
 elasticsearch {
 hosts => "https://localhost:9200"
-user => "elastic"
-password => "2kqH095eI2fFl6v3jz20dxz7"
+user => ""
+password => ""
 ssl_certificate_verification => false
 manage_template => false
 index => "mdas-results"
