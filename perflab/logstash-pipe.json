@@ -17,8 +17,8 @@ filter {
 output {
   elasticsearch {
     hosts => "http://perflab-elastic.perf.msap.io:80/"
-    user => "perfteam"
-    password => "9erfteam123"
+    user => ""
+    password => ""
     ssl_certificate_verification => false
     index => "perf-mdas-results-%{+yyyy.MM.dd}-00001"
   }
